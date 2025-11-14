@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Voice Enhancement Section -->
+    <PreferenceCategory android:title="Voice Enhancement">
+
+        <SwitchPreference
+            android:key="voice_enhancer_enabled"
+            android:title="Enable Voice Enhancement"
+            android:summary="Improve voice quality with noise reduction"
+            android:defaultValue="true" />
+
+        <SeekBarPreference
+            android:key="voice_enhancer_gain"
+            android:title="Voice Gain"
+            android:summary="Adjust microphone volume"
+            android:max="200"
+            android:defaultValue="100"
+            android:dependency="voice_enhancer_enabled" />
+
+        <SeekBarPreference
+            android:key="voice_enhancer_noise_threshold"
+            android:title="Noise Gate Threshold"
+            android:summary="Block background noise (-100 to 0 dB)"
+            android:max="100"
+            android:defaultValue="50"
+            android:dependency="voice_enhancer_enabled" />
+
+    </PreferenceCategory>
+
+    <!-- Equalizer Section -->
+    <PreferenceCategory android:title="Equalizer">
+
+        <SwitchPreference
+            android:key="equalizer_enabled"
+            android:title="Enable Equalizer"
+            android:summary="Adjust audio frequency bands"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="equalizer_preset"
+            android:title="EQ Preset"
+            android:summary="Select equalizer preset"
+            android:entries="@array/eq_preset_names"
+            android:entryValues="@array/eq_preset_values"
+            android:defaultValue="flat"
+            android:dependency="equalizer_enabled" />
+
+    </PreferenceCategory>
+
+    <!-- Voice Changer Section -->
+    <PreferenceCategory android:title="Voice Changer">
+
+        <SwitchPreference
+            android:key="voice_changer_enabled"
+            android:title="Enable Voice Changer"
+            android:summary="Modify your voice in real-time"
+            android:defaultValue="false" />
+
+        <ListPreference
+            android:key="voice_changer_effect"
+            android:title="Voice Effect"
+            android:summary="Select voice effect preset"
+            android:entries="@array/voice_effect_names"
+            android:entryValues="@array/voice_effect_values"
+            android:defaultValue="none"
+            android:dependency="voice_changer_enabled" />
+
+        <SeekBarPreference
+            android:key="voice_changer_pitch"
+            android:title="Pitch Shift"
+            android:summary="Adjust voice pitch (-12 to +12 semitones)"
+            android:max="24"
+            android:defaultValue="12"
+            android:dependency="voice_changer_enabled" />
+
+        <SeekBarPreference
+            android:key="voice_changer_formant"
+            android:title="Formant Shift"
+            android:summary="Adjust voice formants"
+            android:max="24"
+            android:defaultValue="12"
+            android:dependency="voice_changer_enabled" />
+
+    </PreferenceCategory>
+
+    <!-- Audio Effects Section -->
+    <PreferenceCategory android:title="Audio Effects">
+
+        <SwitchPreference
+            android:key="audio_effects_enabled"
+            android:title="Enable Audio Effects"
+            android:summary="Apply audio effects to your voice"
+            android:defaultValue="false" />
+
+        <SwitchPreference
+            android:key="effect_reverb"
+            android:title="Reverb"
+            android:summary="Add room ambience"
+            android:defaultValue="false"
+            android:dependency="audio_effects_enabled" />
+
+        <SeekBarPreference
+            android:key="effect_reverb_mix"
+            android:title="Reverb Mix"
+            android:summary="Reverb amount (0-100%)"
+            android:max="100"
+            android:defaultValue="30"
+            android:dependency="effect_reverb" />
+
+        <SwitchPreference
+            android:key="effect_echo"
+            android:title="Echo"
+            android:summary="Add delay effect"
+            android:defaultValue="false"
+            android:dependency="audio_effects_enabled" />
+
+        <SeekBarPreference
+            android:key="effect_echo_time"
+            android:title="Echo Time"
+            android:summary="Echo delay time"
+            android:max="100"
+            android:defaultValue="30"
+            android:dependency="effect_echo" />
+
+        <SwitchPreference
+            android:key="effect_chorus"
+            android:title="Chorus"
+            android:summary="Add chorus effect"
+            android:defaultValue="false"
+            android:dependency="audio_effects_enabled" />
+
+        <SwitchPreference
+            android:key="effect_distortion"
+            android:title="Distortion"
+            android:summary="Add distortion effect"
+            android:defaultValue="false"
+            android:dependency="audio_effects_enabled" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
