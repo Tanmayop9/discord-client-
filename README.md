@@ -171,6 +171,20 @@ Contributions are welcome! Please:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+### For Maintainers
+
+To create a new release with APK files:
+
+```bash
+# Update version in app/build.gradle, then:
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+```
+
+GitHub Actions will automatically build and publish the APK to the [Releases page](../../releases).
+
+See [RELEASING.md](RELEASING.md) for detailed release instructions.
+
 ## 📄 License
 
 This project inherits the license from [Bluecord](https://github.com/bluemods/Bluecord).
