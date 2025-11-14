@@ -2,6 +2,8 @@
 
 A fork of [Bluecord](https://github.com/bluemods/Bluecord) with advanced voice chat features including voice changer, audio equalizer, noise reduction, and professional audio effects.
 
+> **📦 Quick Install**: Download the latest APK from the [Releases page](../../releases) - no building required!
+
 ## ✨ New Features
 
 ### 🎙️ Voice Enhancement
@@ -69,11 +71,24 @@ adb install app/build/outputs/apk/debug/app-debug.apk
 
 ## 📱 Installation
 
-### From APK
-1. Download the latest APK from [Releases](../../releases)
-2. Enable "Install from Unknown Sources" in Android settings
-3. Install the APK
-4. Grant microphone and storage permissions
+### From APK (Recommended - No Build Required!)
+
+**Easy installation in 3 steps:**
+
+1. **Download the APK**
+   - Go to the [Releases page](../../releases)
+   - Download the latest `app-release.apk` file
+   - (Alternatively, download `app-debug.apk` for a debug build)
+
+2. **Enable Unknown Sources**
+   - Go to **Settings** → **Security** → **Unknown Sources** (enable)
+   - Or **Settings** → **Apps** → **Special Access** → **Install Unknown Apps** → Select your browser/file manager → **Allow**
+
+3. **Install**
+   - Open the downloaded APK file
+   - Tap **Install**
+   - Grant microphone and storage permissions when prompted
+   - Done! Launch the app and enjoy
 
 ### From Source
 Follow the "Building from Source" steps above.
@@ -155,6 +170,20 @@ Contributions are welcome! Please:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+### For Maintainers
+
+To create a new release with APK files:
+
+```bash
+# Update version in app/build.gradle, then:
+git tag -a v1.0.0 -m "Release version 1.0.0"
+git push origin v1.0.0
+```
+
+GitHub Actions will automatically build and publish the APK to the [Releases page](../../releases).
+
+See [RELEASING.md](RELEASING.md) for detailed release instructions.
 
 ## 📄 License
 

@@ -1,0 +1,81 @@
+name: Release APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+    
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    
+    - name: Build Release APK
+      run: ./gradlew assembleRelease --stacktrace
+    
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --stacktrace
+      
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+    
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          app/build/outputs/apk/release/app-release.apk
+          app/build/outputs/apk/debug/app-debug.apk
+        body: |
+          ## Enhanced Bluecord ${{ steps.get_version.outputs.VERSION }}
+          
+          ### Installation Instructions
+          
+          1. Download the APK file below (choose release or debug):
+             - `app-release.apk` - Optimized release build (recommended)
+             - `app-debug.apk` - Debug build with additional logging
+          
+          2. Enable "Install from Unknown Sources" in your Android settings:
+             - Go to Settings → Security → Unknown Sources (enable)
+             - Or Settings → Apps → Special Access → Install Unknown Apps → Select your browser/file manager → Allow
+          
+          3. Open the downloaded APK file and install
+          
+          4. Grant the required permissions when prompted:
+             - Microphone access (for voice features)
+             - Storage access (for media)
+          
+          ### What's New
+          
+          See the commit history for changes in this release.
+          
+          ### Features
+          
+          - Advanced Voice Enhancement with noise reduction
+          - Professional Equalizer with custom presets
+          - Real-time Voice Changer effects
+          - Audio effects (reverb, echo, chorus, distortion)
+          - All original Bluecord features
+          
+          ### Support
+          
+          For issues or questions, please open an issue on GitHub.
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
